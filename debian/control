@@ -1,12 +1,13 @@
-Source: auto-mount-usb-media
-Section: unknown
+Source: mount-usb-media
+Section: embedded
 Priority: extra
 Maintainer: Ryan Kuester <rkuester@insymbols.com>
-Build-Depends: debhelper (>= 8.0.0)
+Build-Depends: debhelper (>= 8.0.0), dh-systemd
 Standards-Version: 3.9.3
 
-Package: auto-mount-usb-media
+Package: mount-usb-media
 Architecture: all
-Depends: ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: udev, systemd, ${misc:Depends}
+Description: Mount USB media automatically
+ Mount USB media automatically to /media/by-bus/usb/* so long as they
+ are connected. Uses udev rules and systemd.

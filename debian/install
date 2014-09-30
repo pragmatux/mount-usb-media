@@ -1,0 +1,3 @@
+90-mount-usb-media.rules /lib/udev/rules.d/
+mount-usb-media@.service /lib/systemd/system/
+start stop /usr/lib/mount-usb-media

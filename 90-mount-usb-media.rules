@@ -1,0 +1,5 @@
+# Trigger the systemd service when a partition or whole-disk arrives that
+# appears to have a filesystem.
+
+ENV{ID_BUS}=="usb", ENV{DEVTYPE}=="disk", ACTION=="add", ENV{ID_FS_TYPE}!="", ENV{SYSTEMD_WANTS}+="mount-usb-media@%k.service", ENV{SYSTEMD_ALIAS}="/dev/%k.device"
+ENV{ID_BUS}=="usb", ENV{DEVTYPE}=="partition", ACTION=="add", ENV{ID_FS_TYPE}!="", ENV{SYSTEMD_WANTS}+="mount-usb-media@%k.service", ENV{SYSTEMD_ALIAS}="/dev/%k.device"

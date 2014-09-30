@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+devname=$1
+point=$(mount | egrep "^$devname " | cut -f3 -d' ')
+
+if [ -n "$point" ]; then
+	umount -l $point
+	rm -r $point
+fi

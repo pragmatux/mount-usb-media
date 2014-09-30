@@ -1,0 +1,10 @@
+[Unit]
+Description=Mount USB media /dev/%i
+BindsTo=dev-%i.device
+After=dev-%i.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/lib/mount-usb-media/start /dev/%I
+ExecStop=/usr/lib/mount-usb-media/stop /dev/%I

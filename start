@@ -1,0 +1,30 @@
+#!/bin/sh
+set -e
+
+devname=$1
+eval $(blkid -o export $devname)
+target=/run/media/$(basename $devname)
+
+case ${TYPE:-none} in
+	vfat)
+		options="-o flush"
+		break
+		;;
+
+	ext2|ext3|ext4)
+		# mount, but add no options
+		break
+		;;
+
+	*)
+		# gracefully quit, nothing mountable
+		exit 0
+		;;
+esac
+
+mkdir -p $target
+mount ${options:-} $devname $target || {
+	ret=$?
+	rm -r $target
+	exit $ret
+}
