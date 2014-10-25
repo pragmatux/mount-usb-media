@@ -2,7 +2,7 @@
 set -e
 
 devname=$1
-eval $(blkid -o export $devname)
+TYPE=$(blkid -o value -s TYPE $devname)
 target=/run/media/$(basename $devname)
 
 case ${TYPE:-none} in
