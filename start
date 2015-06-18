@@ -28,3 +28,7 @@ mount ${options:-} $devname $target || {
 	rm -r $target
 	exit $ret
 }
+
+export AUTORUN_MOUNTPOINT=$target
+run-parts --verbose --regex '.*' /usr/lib/mount-usb-media/autorun/mount.d \
+	|| true
